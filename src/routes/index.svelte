@@ -1,28 +1,30 @@
-<script context="module">
-    export async function load() {
-        const url = `https://restcountries.com/v2/all`;
-        let response = await axios.get(url);
-    
-        return {
-            status: response.status,
-            props: {
-                countries: response.data
-            }
-        };
-    }
-</script>
 <script>
     // @ts-nocheck
     // @ts-ignore
     import CountryCard from "$lib/components/CountryCard.svelte";
     import axios from "axios";
     import { lightMode } from "$lib/stores.js";
+    import { goto } from "$app/navigation";
+    import { onMount } from "svelte";
+    import CountryCardPlaceHolder from "$lib/placeholders/CountryCardPlaceHolder.svelte";
     
- 
-    export let countries;
+    let countries = [];
+    let loading = false;
+
+    onMount(async()=>{
+        const url = `https://restcountries.com/v2/all`;
+        loading = true;
+        let response = await axios.get(url);
+        loading = false;
+        countries = response.data;
+    });
 
     function toggleDarkness(){
         lightMode.update($lightMode => !$lightMode);
+    }
+    
+    function onClicked(countryName){
+        goto(countryName);
     }
 
 </script>
@@ -63,15 +65,27 @@
             </div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 px-8 sm:px-20"> 
-            {#each countries as country }
-                <CountryCard 
-                    countryName={country.name}
-                    countryImageSrc={country.flag}
-                    countryPopulationCount={country.population}
-                    countryRegion={country.region}
-                    countryCapital={country.capital}
-                   />
-            {/each}
+            {#if !loading}
+                {#each countries as country}
+                    <CountryCard 
+                        countryName={country.name}
+                        countryImageSrc={country.flag}
+                        countryPopulationCount={country.population}
+                        countryRegion={country.region}
+                        countryCapital={country.capital}
+                        onClicked={()=>onClicked(country.name)}
+                    />
+                {/each}
+            {:else}
+                <CountryCardPlaceHolder />
+                <CountryCardPlaceHolder />
+                <CountryCardPlaceHolder />
+                <CountryCardPlaceHolder />
+                <CountryCardPlaceHolder />
+                <CountryCardPlaceHolder />
+                <CountryCardPlaceHolder />
+                <CountryCardPlaceHolder />
+            {/if}
         </div>
     </div>
 </div>

@@ -1,15 +1,15 @@
 <script>
     import { lightMode } from "$lib/stores";
 
-
     export let countryName = "";
     export let countryImageSrc="";
     export let countryPopulationCount = 0;
     export let countryRegion = "";
     export let countryCapital = "";
+    export let onClicked;
 </script>
 
-<div class="flex flex-col rounded-md shadow-md {$lightMode ? "bg-white" :"bg-dark-blue text-white"} pb-11 hover:scale-105 hover:duration-700 transition duration-200 cursor-pointer">
+<div on:click={onClicked} class="flex flex-col rounded-md shadow-md {$lightMode ? "bg-white" :"bg-dark-blue text-white"} pb-11 hover:scale-105 hover:duration-700 transition duration-200 cursor-pointer">
     <div class="h-[200px] w-full overflow-hidden box-border">
         <img class="  w-full h-full max-w-full rounded-t-md object-cover" alt="flag" src={countryImageSrc} />
     </div>
