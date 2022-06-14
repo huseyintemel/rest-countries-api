@@ -1,15 +1,15 @@
 <script context="module">
-     export async function load() {
-    const url = `https://restcountries.com/v2/all`;
-    let response = await axios.get(url);
-   
-    return {
-        status: response.status,
-        props: {
-            countries: response.data
-        }
-    };
-  }
+    export async function load() {
+        const url = `https://restcountries.com/v2/all`;
+        let response = await axios.get(url);
+    
+        return {
+            status: response.status,
+            props: {
+                countries: response.data
+            }
+        };
+    }
 </script>
 <script>
     // @ts-nocheck
@@ -22,13 +22,13 @@
     export let countries;
 
     function toggleDarkness(){
-        lightMode.set(!$lightMode);
+        lightMode.update($lightMode => !$lightMode);
     }
 
 </script>
 
 <div class="h-full w-full font-nunito"> 
-    <div class="{$lightMode ? "bg-white text-black" : "bg-dark-blue text-white"} px-8 sm:px-20 py-5 transition-colors duration-500"> 
+    <div class="{$lightMode ? "bg-white text-black" : "bg-dark-blue text-white"} px-8 sm:px-20 py-5 transition-colors duration-200"> 
         <div class="flex flex-row items-center justify-between"> 
             <h1 class="text-xl font-bold">Where in the world?</h1>
             <button on:click={()=>toggleDarkness()} class="inline-flex items-center space-x-2">
@@ -45,7 +45,7 @@
             </button>   
         </div>
     </div>
-    <div class="{$lightMode ? "bg-light-gray" : "bg-very-dark-blue"} min-h-screen transition-colors duration-500">
+    <div class="{$lightMode ? "bg-light-gray" : "bg-very-dark-blue"} min-h-screen transition-colors duration-200">
         <div class="flex flex-row flex-wrap space-y-6 sm:space-y-0 justify-between items-center px-8 sm:px-20 py-12">
             <div class="w-full max-w-md relative shadow-sm">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 absolute z-10 text-icon-gray top-4 left-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
