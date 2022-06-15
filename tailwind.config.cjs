@@ -5,7 +5,7 @@ const config = {
 		extend: {
 			colors: {
                 'light-gray':'#fafafa',
-				'icon-gray':"#858585",
+				'dark-gray':"#858585",
 				'dark-blue':"hsl(209, 23%, 22%)",
 				'very-dark-blue':"hsl(207, 26%, 17%)"
             },
