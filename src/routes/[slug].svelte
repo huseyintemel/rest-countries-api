@@ -25,6 +25,14 @@
         goto('/');
     }
 
+    async function borderCountryClicked(code){
+        let url = 'https://restcountries.com/v2/alpha/'+code;
+        let response = await axios.get(url);
+        let borderCountryName = response.data.name;
+        
+        goto('/'+borderCountryName);
+    }
+
 </script>
 
 <div class="{$lightMode ? "bg-light-gray" : "bg-very-dark-blue"} font-nunito flex lg:fixed w-full h-full">
@@ -64,7 +72,7 @@
                     {#if country.borders}
                         <div class="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-8 gap-2">
                             {#each country.borders as border}
-                                <BorderCountryCard countryAbbreviation={border} />
+                                <BorderCountryCard onClicked={()=>borderCountryClicked(border)} countryAbbreviation={border} />
                             {/each}
                         </div>
                     {:else}
@@ -72,37 +80,6 @@
                     {/if}    
                 </div>
             </div>
-            <!--
-            <div class="flex flex-col my-10 w-full max-w-xl xl:max-w-3xl flex-shrink-0">
-                <h1 class="font-bold text-2xl">{country.name}</h1>
-                <div class="flex flex-col md:flex-row justify-between w-full">
-                    <div class="flex flex-col space-y-4 pt-8 w-1/2">
-                        <InfoItem infoHeader={"Native Name"} infoDetail={country.nativeName} />
-                        <InfoItem infoHeader={"Population"} infoDetail={country.population} />
-                        <InfoItem infoHeader={"Region"} infoDetail={country.region} />
-                        <InfoItem infoHeader={"Sub Region"} infoDetail={country.subregion} />
-                        <InfoItem infoHeader={"Capital"} infoDetail={country.capital} />
-                    </div>
-                    <div class="flex flex-col space-y-4 pt-8 w-1/2">
-                        <InfoItem infoHeader={"Top Level Domain"} infoDetail={country.topLevelDomain} />
-                        <InfoItem infoHeader={"Currencies"} infoDetail={country.currencies} hasMultipleDetail={true} />
-                        <InfoItem infoHeader={"Languages"} infoDetail={country.languages} hasMultipleDetail={true} />
-                    </div>
-                </div>
-                <div class="flex flex-col xl:flex-row space-x-0 xl:space-x-4 items-start xl:items-center mt-8">
-                    <span class="font-bold mb-4 xl:mb-0 whitespace-nowrap">Border Countries:</span>
-                    {#if country.borders}
-                        <div class="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-8 gap-2">
-                            {#each country.borders as border}
-                                <BorderCountryCard countryAbbreviation={border} />
-                            {/each}
-                        </div>
-                    {:else}
-                        <p class="text-red-600 font-semibold">This country has no border country</p>   
-                    {/if}    
-                </div>
-            </div>  
-            -->
        </div>    
     </div>
 </div>
