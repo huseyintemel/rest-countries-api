@@ -8,11 +8,22 @@
     import { onMount } from "svelte";
     import CountryCardPlaceHolder from "$lib/placeholders/CountryCardPlaceHolder.svelte";
     
-    $: countries = [];
+    let countries = [];
     let loading = false;
     let filterVisible = false;
     let selectedFilter;
     let hasFilterSelected = false;
+    let searchInput = '';
+    $: filteredCountries = [];
+
+    $:{
+        console.log(filteredCountries);
+        if(searchInput){
+            filteredCountries = countries.filter((country) => country.name.toLowerCase().includes(searchInput.toLowerCase()));
+        }else{
+            filteredCountries = countries;
+        }
+    }
 
     let filters = [
         {id:1,name:"All"},
@@ -56,7 +67,7 @@
         loading = true;
         let response = await axios.get(url);
         loading = false;
-        countries = response.data;
+        filteredCountries = response.data;
     }
 
 </script>
@@ -68,7 +79,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 absolute z-10 text-dark-gray top-4 left-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
-                <input class="w-full font-semibold rounded-md border py-4 px-16 focus:outline-none" placeholder="Search for a country...">
+                <input bind:value={searchInput} class="w-full font-semibold rounded-md border py-4 px-16 focus:outline-none" placeholder="Search for a country...">
             </div>
             <div class="relative">
                 <button on:click={toggleFilter} class="inline-flex {hasFilterSelected ? "w-52" :"w-full"} py-4 px-5 justify-between items-center space-x-4 font-semibold bg-white rounded-md border shadow-sm focus:outline-none">
@@ -86,7 +97,7 @@
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 px-8 sm:px-20"> 
             {#if !loading}
-                {#each countries as country}
+                {#each filteredCountries as country}
                     <CountryCard 
                         countryName={country.name}
                         countryImageSrc={country.flag}
