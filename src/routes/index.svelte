@@ -17,7 +17,6 @@
     $: filteredCountries = [];
 
     $:{
-        console.log(filteredCountries);
         if(searchInput){
             filteredCountries = countries.filter((country) => country.name.toLowerCase().includes(searchInput.toLowerCase()));
         }else{
