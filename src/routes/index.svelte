@@ -1,9 +1,6 @@
 <script>
-    // @ts-nocheck
-    // @ts-ignore
     import CountryCard from "$lib/components/CountryCard.svelte";
     import axios from "axios";
-    import { lightMode } from "$lib/stores.js";
     import { goto } from "$app/navigation";
     import { onMount } from "svelte";
     import CountryCardPlaceHolder from "$lib/placeholders/CountryCardPlaceHolder.svelte";
@@ -72,7 +69,7 @@
 </script>
 
 <div class="h-full w-full font-nunito"> 
-    <div class="{$lightMode ? "bg-light-gray" : "bg-very-dark-blue"} min-h-screen transition-colors duration-200">
+    <div class="bg-light-gray dark:bg-very-dark-blue min-h-screen transition-colors duration-200">
         <div class="flex flex-row flex-wrap space-y-6 sm:space-y-0 justify-between items-center px-8 sm:px-20 py-12">
             <div class="w-full max-w-md relative shadow-sm">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 absolute z-10 text-dark-gray top-4 left-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
