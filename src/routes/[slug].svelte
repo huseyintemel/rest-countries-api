@@ -11,6 +11,10 @@
     }
 </script>
 
+<svelte:head>
+    <title>{country.name}</title>
+</svelte:head>
+
 <script>
     import BorderCountryCard from "$lib/components/BorderCountryCard.svelte";
     import InfoItem from "$lib/components/InfoItem.svelte";

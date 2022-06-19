@@ -68,6 +68,10 @@
 
 </script>
 
+<svelte:head>
+	<title>Where in the world? - Frontend Mentor</title>
+</svelte:head>
+
 <div class="h-full w-full font-nunito"> 
     <div class="bg-light-gray dark:bg-very-dark-blue min-h-screen transition-colors duration-200">
         <div class="flex flex-row flex-wrap space-y-6 sm:space-y-0 justify-between items-center px-8 lg:px-20 py-12">
