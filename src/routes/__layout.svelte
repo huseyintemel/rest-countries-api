@@ -14,7 +14,7 @@
 	}
 </script>
 
-<div class="bg-white text-black dark:bg-dark-blue dark:text-white px-8 sm:px-20 py-5 transition-colors duration-200"> 
+<div class="bg-white text-black dark:bg-dark-blue dark:text-white px-8 lg:px-20 py-5 transition-colors duration-200"> 
 	<div class="flex flex-row items-center justify-between"> 
 		<h1 on:click={goHome} class="text-xl font-bold cursor-pointer">Where in the world?</h1>
 		<button on:click={toggleDarkness} class="inline-flex items-center space-x-2">

@@ -70,7 +70,7 @@
 
 <div class="h-full w-full font-nunito"> 
     <div class="bg-light-gray dark:bg-very-dark-blue min-h-screen transition-colors duration-200">
-        <div class="flex flex-row flex-wrap space-y-6 sm:space-y-0 justify-between items-center px-8 sm:px-20 py-12">
+        <div class="flex flex-row flex-wrap space-y-6 sm:space-y-0 justify-between items-center px-8 lg:px-20 py-12">
             <div class="w-full max-w-md relative shadow-sm">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 absolute z-10 text-dark-gray top-4 left-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -91,7 +91,7 @@
                 </div>
             </div>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 px-8 sm:px-20"> 
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 px-8 lg:px-20"> 
             {#if !loading}
                 {#each filteredCountries as country}
                     <CountryCard 
