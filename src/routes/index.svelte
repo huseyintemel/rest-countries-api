@@ -31,11 +31,15 @@
     ]; 
 
     onMount(async()=>{
-        const url = `https://restcountries.com/v2/all`;
-        loading = true;
-        let response = await axios.get(url);
-        loading = false;
-        countries = response.data;
+        try {
+            const url = `https://restcountries.com/v2/all`;
+            loading = true;
+            let response = await axios.get(url);
+            loading = false;
+            countries = response.data;
+        } catch (error) {
+            console.log(error);
+        }
     });
     
     function onClicked(countryName){
@@ -47,23 +51,27 @@
     }
 
     async function filterClicked(i){
-        selectedFilter = filters[i].name;
-        hasFilterSelected = true;
-        filterVisible = false;
+        try {
+            selectedFilter = filters[i].name;
+            hasFilterSelected = true;
+            filterVisible = false;
 
-        let region = selectedFilter.toLowerCase();
-        let url;
+            let region = selectedFilter.toLowerCase();
+            let url;
 
-        if(region == "all"){
-            url = `https://restcountries.com/v2/all`;
-        }else{
-            url = `https://restcountries.com/v2/region/`+region;
+            if(region == "all"){
+                url = `https://restcountries.com/v2/all`;
+            }else{
+                url = `https://restcountries.com/v2/region/`+region;
+            }
+        
+            loading = true;
+            let response = await axios.get(url);
+            loading = false;
+            filteredCountries = response.data;
+        } catch (error) {
+            console.log(error);
         }
-       
-        loading = true;
-        let response = await axios.get(url);
-        loading = false;
-        filteredCountries = response.data;
     }
 
 </script>

@@ -28,11 +28,15 @@
     }
 
     async function borderCountryClicked(code){
-        let url = 'https://restcountries.com/v2/alpha/'+code;
-        let response = await axios.get(url);
-        let borderCountryName = response.data.name;
-        
-        goto('/'+borderCountryName);
+        try {
+            let url = 'https://restcountries.com/v2/alpha/'+code;
+            let response = await axios.get(url);
+            let borderCountryName = response.data.name;
+            
+            goto('/'+borderCountryName);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
 </script>
