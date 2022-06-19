@@ -7,7 +7,7 @@
     export let onClicked;
 </script>
 
-<div on:click={onClicked} class="flex flex-col rounded-md shadow-md bg-white dark:bg-dark-blue dark:text-white pb-11 hover:scale-105 hover:duration-700 transition-colors duration-200 cursor-pointer">
+<div on:click={onClicked} class="flex flex-col rounded-md shadow-md bg-white dark:bg-dark-blue dark:text-white pb-11 hover:scale-105 hover:duration-700 transition duration-200 cursor-pointer">
     <div class="h-[200px] w-full overflow-hidden box-border">
         <img class="  w-full h-full max-w-full rounded-t-md object-cover" alt="flag" src={countryImageSrc} />
     </div>
